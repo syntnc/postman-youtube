@@ -2,11 +2,12 @@ import React from 'react'
 
 const Video = (props) => {
   const video = props.video;
-  console.log(video);
+  const onSelect = props.onSelect;
+  // console.log(video);
   const imgUrl = video.snippet.thumbnails.default.url;
 
   return (
-    <li>
+    <li onClick={() => onSelect(video)}>
       <div>
         <div>
           <img src={imgUrl}/>
