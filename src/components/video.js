@@ -16,6 +16,9 @@ const Video = (props) => {
           <div>
             {video.snippet.title}
           </div>
+          <div>
+            {video.snippet.publishedAt}
+          </div>
         </div>
       </div>
     </li>

@@ -14,17 +14,39 @@ class App extends Component {
     super(props);
     this.state = {
       videoList: [],
+      googleRankedVideoList: [],
       selectedVideo: null
     };
     this.searchVideos('LinusTechTips');
+    this.sortVideos = this.sortVideos.bind(this);
   }
 
   searchVideos(searchString) {
-    YTSearch({ key: API_KEY, term: searchString}, (videoList) => {
+    YTSearch({key: API_KEY, term: searchString}, (videoList) => {
       this.setState({
         videoList: videoList,
+        googleRankedVideoList: videoList.slice(),
         selectedVideo: videoList[0]
       });
+    });
+  }
+
+  sortVideos(event) {
+    var videoList = this.state.videoList;
+    if (event.target.value == 'title') {
+      videoList.sort((a, b) => {
+        return a.snippet.title > b.snippet.title;
+      });
+    } else if (event.target.value == 'published-date') {
+      videoList.sort((a, b) => {
+        return a.snippet.publishedAt > b.snippet.publishedAt;
+      });
+    } else if (event.target.value == 'no-sort') {
+      videoList = this.state.googleRankedVideoList.slice();
+    }
+    this.setState({
+      sortBy: event.target.value,
+      videoList: videoList,
     });
   }
   
@@ -48,6 +70,15 @@ class App extends Component {
         <SearchBar
           onSearchTermChange={searchString => this.searchVideos(searchString)}
         />
+        <form action="">
+          <div>
+            <select name="" id="" value={this.state.sortBy} onChange={this.sortVideos}>
+              <option value="no-sort">Select Sort Rule</option>
+              <option value="title">Title</option>
+              <option value="published-date">Published Date</option>
+            </select>
+          </div>
+        </form>
         <VideoData
           video={this.state.selectedVideo}
         />
