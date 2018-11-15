@@ -1,5 +1,6 @@
 import React from 'react';
 import Video from './video';
+import { Item } from 'semantic-ui-react';
 
 const VideoList = (props) => {
   const videoList = props.videoList.map((video) => {
@@ -12,9 +13,9 @@ const VideoList = (props) => {
     );
   });
   return (
-    <ul>
+    <Item.Group divided>
       {videoList}
-    </ul>
+    </Item.Group>
   );
 };
 

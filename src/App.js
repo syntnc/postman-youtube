@@ -5,6 +5,7 @@ import YTSearch from 'youtube-api-search';
 import SearchBar from './components/searchBar';
 import VideoList from './components/videoList';
 import VideoData from './components/videoData';
+import { Dropdown, Grid, Menu, Segment } from 'semantic-ui-react';
 
 const API_KEY = 'AIzaSyC2UYEzh3gTQpCjOqRfcYnFcXvsVWo23cc'
 
@@ -15,14 +16,29 @@ class App extends Component {
     this.state = {
       videoList: [],
       googleRankedVideoList: [],
-      selectedVideo: null
+      selectedVideo: null,
+      sortBy: '',
+      options: [
+        {
+          value: 'no-sort',
+          text: 'Default YouTube Ranking'
+        },
+        {
+          value: 'title',
+          text: 'Title'
+        },
+        {
+          value: 'published-date',
+          text: 'Published Date'
+        }
+      ]
     };
     this.searchVideos('LinusTechTips');
     this.sortVideos = this.sortVideos.bind(this);
   }
 
   searchVideos(searchString) {
-    YTSearch({key: API_KEY, term: searchString}, (videoList) => {
+    YTSearch({ key: API_KEY, term: searchString, maxResults: 50}, (videoList) => {
       this.setState({
         videoList: videoList,
         googleRankedVideoList: videoList.slice(),
@@ -31,64 +47,65 @@ class App extends Component {
     });
   }
 
-  sortVideos(event) {
+  sortVideos(event, data) {
     var videoList = this.state.videoList;
-    if (event.target.value == 'title') {
+    if (data.value === 'title') {
       videoList.sort((a, b) => {
         return a.snippet.title > b.snippet.title;
       });
-    } else if (event.target.value == 'published-date') {
+    } else if (data.value === 'published-date') {
       videoList.sort((a, b) => {
         return a.snippet.publishedAt > b.snippet.publishedAt;
       });
-    } else if (event.target.value == 'no-sort') {
+    } else if (data.value === 'no-sort') {
       videoList = this.state.googleRankedVideoList.slice();
     }
     this.setState({
-      sortBy: event.target.value,
+      sortBy: data.value,
       videoList: videoList,
     });
   }
-  
+
   render() {
     return (
       <div className="App">
-        {/* <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header> */}
-        <SearchBar
-          onSearchTermChange={searchString => this.searchVideos(searchString)}
-        />
-        <form action="">
-          <div>
-            <select name="" id="" value={this.state.sortBy} onChange={this.sortVideos}>
-              <option value="no-sort">Select Sort Rule</option>
-              <option value="title">Title</option>
-              <option value="published-date">Published Date</option>
-            </select>
-          </div>
-        </form>
-        <VideoData
-          video={this.state.selectedVideo}
-        />
-        <VideoList 
-          onVideoSelect={selected => this.setState({
-              selectedVideo: selected
-            })
-          }
-          videoList={this.state.videoList}
-        />
+        <Segment inverted>
+          Postman Youtube API Search with Client-Side Sorting
+        </Segment>
+        <Menu secondary>
+          <Menu.Item>
+            <SearchBar
+              onSearchTermChange={searchString => this.searchVideos(searchString)}
+            />
+          </Menu.Item>
+          <Menu.Item position='right'>
+            <Dropdown
+              button
+              direction='left'
+              placeholder='Sort By'
+              options={this.state.options}
+              value={this.state.sortBy}
+              onChange={this.sortVideos}
+            />
+          </Menu.Item>
+        </Menu>
+
+        <Grid verticalAlign='middle'>
+          <Grid.Column width={10}>
+            <VideoData
+              video={this.state.selectedVideo}
+            />
+          </Grid.Column>
+          <Grid.Column width={6}>
+            <VideoList
+              onVideoSelect={selected => this.setState({
+                selectedVideo: selected
+              })
+              }
+              videoList={this.state.videoList}
+            />
+          </Grid.Column>
+        </Grid>
       </div>
     );
   }
