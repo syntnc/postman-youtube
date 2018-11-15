@@ -1,44 +1,44 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Postman - YouTube API Search with Client-Side sorting
+![](https://img.shields.io/npm/v/npm.svg) ![node](https://img.shields.io/node/v/passport.svg)
 
-## Available Scripts
+## Sayantan Chatterjee
 
-In the project directory, you can run:
+## Contents
+- [About](#about)
+- [Requirements](#requirements)
+- [Packages used](#packages-used)
+- [Usage](#usage)
+    - [Install Dependencies](#install-dependencies)
+    - [Run](#run)
 
-### `npm start`
+## About
+YouTube v3 API Search with the following client-side sorting functionalities:
+- Keep unsorted default ranking order provided by YouTube
+- Sort by video title
+- Sort by video published date
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Requirements
+- Node.js
+- react.js
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Packages used
+- **```create-react-app```**: A [command line script](https://reactjs.org/docs/create-a-new-react-app.html) developed by Facebook that sets up a basic boilerplate for a React web app.
+- **```youtube-api-search```**:  An module that uses [YouTube Data API v3](https://developers.google.com/youtube/v3/) to search for video snippets using a given search term.
+- **```semantic-ui-react```**: [React integration](https://react.semantic-ui.com/) package with [Semantic UI](https://semantic-ui.com/) that is used for the front-end styling.
 
-### `npm test`
+## Usage
+- **Install dependencies**
+    
+    npm:
+    ```
+    npm install
+    ```
+    yarn:
+    ```
+    yarn install
+    ```
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **Run**
+    ```
+    npm run start
+    ```
