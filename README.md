@@ -9,7 +9,9 @@
 - [Packages used](#packages-used)
 - [Usage](#usage)
     - [Install Dependencies](#install-dependencies)
+    - [Build](#build)
     - [Run](#run)
+    - [Online Live Demo](https://postman-youtube.netlify.com)
 
 ## About
 YouTube v3 API Search with the following client-side sorting functionalities:
@@ -38,7 +40,20 @@ YouTube v3 API Search with the following client-side sorting functionalities:
     yarn install
     ```
 
+- **Build**
+    
+    npm:
+    ```
+    npm run build
+    ```
+    yarn:
+    ```
+    yarn build
+    ```
 - **Run**
     ```
     npm run start
     ```
+
+- **Online Live Demo**
+    Click [here](https://postman-youtube.netlify.com) to visit the live Netlify deployment.
