@@ -90,7 +90,7 @@ class App extends Component {
           </Menu.Item>
         </Menu>
 
-        <Grid verticalAlign='middle'>
+        <Grid>
           <Grid.Column width={10}>
             <VideoData
               video={this.state.selectedVideo}

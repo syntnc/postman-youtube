@@ -10,7 +10,7 @@ const Video = (props) => {
       <Item.Image src={video.snippet.thumbnails.medium.url} />
 
       <Item.Content>
-        <Item.Header as='a'>{video.snippet.title}</Item.Header>
+        <Item.Header>{video.snippet.title}</Item.Header>
         <Item.Meta>
           <Icon name='clock outline' />
           <span className='date'>
